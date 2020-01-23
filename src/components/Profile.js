@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 import GameItem from "./GameItem"
+import '../GameList.css'
 
 
 class Profile extends Component {
@@ -8,7 +10,8 @@ class Profile extends Component {
 
     state = {
         user: {},
-        wishlist: []
+        wishlist: [],
+        library: []
     }
 
     componentDidMount() {
@@ -21,33 +24,65 @@ class Profile extends Component {
         })
             .then(res => res.json())
             .then(data => {
-                this.setState({ user: data.user, wishlist: data.wishlist })
+                console.log(data)
+                this.setState({ user: data.user, wishlist: data.wishlist, library: data.library })
             })
     }
 
     render() {
         return (
 
-            <Card>
-                <Image src='profilepic.jpg' wrapped ui={false} />
-                <Card.Content>
-                    <Card.Header>{this.state.user.name}'s Profile</Card.Header>
-                    <Card.Description>
-                        {this.state.user.bio}
-                    </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                    <Icon name='gamepad' />
-                    {this.state.wishlist.length} Game(s) on Wishlist
-                        {this.state.wishlist.map((game) =>
-                        <GameItem
-                            key={game.id}
-                            gameId={game.id}
-                            image={game.image}
-                            
-                        />)}
-                </Card.Content>
-            </Card>
+
+
+            <div>
+                <div className="profile">
+                    <Card>
+                        <Image src='profilepic.jpg' wrapped ui={false} />
+                        <Card.Content>
+                            <Card.Header>{this.state.user.name}'s Profile</Card.Header>
+                            <Card.Description>
+                                {this.state.user.bio}
+                            </Card.Description>
+                        </Card.Content>
+                        <Card.Content extra>
+
+                        </Card.Content>
+                    </Card>
+                </div>
+
+                <br />
+
+                <div>
+
+                    <div>
+                        <Header as='h3' textAlign='center'>
+                            {this.state.user.name}'s Library:
+                        </Header>
+                        <ul className="profile-pics">
+                            {this.state.library.map((game) => {
+                                return (
+                                    <GameItem gameId={game.id} image={game.image} />
+                                )
+                            })}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <Header as='h3' textAlign='center'>
+                            {this.state.user.name}'s Wishlist:
+                        </Header>
+                        <ul className="profile-pics">
+                            {this.state.wishlist.map((game) => {
+                                return (
+                                    <GameItem gameId={game.id} image={game.image} />
+                                )
+                            })}
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
         )
     }
 }

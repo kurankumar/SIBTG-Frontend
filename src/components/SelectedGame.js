@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import '../GameList.css'
 
 class SelectedGame extends Component {
@@ -77,11 +78,13 @@ class SelectedGame extends Component {
                             </Card.Description>
                         </Card.Content>
                         <Card.Content extra>
-                            <button type="button"> Add a Review </button>
-                            <br />
-                            <button type="button" onClick={this.addToLibrary}> Add To Library  </button>
-                            <br />
-                            <button type="button" onClick={this.addToWishlist}> Add To Wishlist </button>
+                            <Button.Group>
+
+                            <Button type="button" onClick={this.addToLibrary}> Add To Library  </Button>
+                            <Button.Or />
+                            <Button positive type="button" onClick={this.addToWishlist}> Add To Wishlist </Button>
+
+                            </Button.Group>
                         </Card.Content>
                     </Card>
                 </div>
