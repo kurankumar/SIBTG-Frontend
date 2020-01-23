@@ -25,6 +25,7 @@ class GameContainer extends Component {
     render() {
         return (
             <Fragment>
+                
                 <div className="container">
                     <GameList games={this.state.games} handleClick={this.props.handleClick} />
                 </div>

@@ -6,12 +6,15 @@ import {
   Route
 } from "react-router-dom";
 
+import { Button } from 'semantic-ui-react'
+
 import GameHeader from './Header';
 import GameContainer from './GameContainer'
 import SelectedGame from './SelectedGame';
 import Signup from "./Signup";
 import Login from "./Login";
 import Profile from "./Profile"
+import About from "./About"
 import '../App.css';
 
 class App extends Component {
@@ -33,7 +36,7 @@ class App extends Component {
 
             <Route path="/profile" component={Profile} />
 
-            
+            <Route path="/about" component={About} />
 
           </Switch>
         </Router>
