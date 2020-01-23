@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import GameList from './GameList';
+import '../GameList.css'
 
 
 class GameContainer extends Component {
@@ -8,19 +9,26 @@ class GameContainer extends Component {
         games: []
     }
 
-    componentDidMount(){
-        fetch("http://localhost:3000/games")
-        .then(res => res.json())
-        .then(data => this.setState({games:data}))
+    componentDidMount() {
+        fetch("http://localhost:3000/games", {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => this.setState({ games: data }))
     }
 
 
     render() {
-        return(
+        return (
             <Fragment>
+                <div className="container">
+                    <GameList games={this.state.games} handleClick={this.props.handleClick} />
+                </div>
 
-                <GameList games={this.state.games} handleClick={this.props.handleClick}/>
-                
             </Fragment>
         )
     }

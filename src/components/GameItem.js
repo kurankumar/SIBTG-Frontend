@@ -1,14 +1,17 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { Grid } from 'semantic-ui-react'
+import '../GameList.css'
 
 const GameItem = (props) => {
 
-    return <li key={props.gameId} 
-    onClick={() => props.handleClick(props.gameId)}>
+    return (
         <Link to={`/games/${props.gameId}`}>
-        <img src={props.image} alt=" " width= "250" height = "250"/>
+            <li className="flex-item" key={props.gameId} >
+                <img src={props.image} alt=" " width="250" height="250" />
+            </li>
         </Link>
-    </li>
+    )
 }
 
 export default GameItem;

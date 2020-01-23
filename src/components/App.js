@@ -3,38 +3,40 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
-import Header from './Header';
+import GameHeader from './Header';
 import GameContainer from './GameContainer'
 import SelectedGame from './SelectedGame';
+import Signup from "./Signup";
+import Login from "./Login";
+import Profile from "./Profile"
 import '../App.css';
 
 class App extends Component {
-
-
-  handleClick = (gameId) => {
-    console.log(gameId)
-  }
 
   render() {
     return (
       <div className="app">
         <Router>
-          <Header />
+          <GameHeader />
 
           <Switch>
-            <Route exact path="/"> 
-              <GameContainer handleClick={this.handleClick}/>
-            </Route>
+            <Route exact path="/" component={Signup} />
 
-            <Route path="/games/:id"  render={props => (<SelectedGame handleClick={this.handleClick} {...props}/>)}  />
-                      
-    
+            <Route path="/games/:id" render={props => (<SelectedGame {...props} />)} />
+
+            <Route path="/games" component={GameContainer} />
+
+            <Route path="/login" component={Login} />
+
+            <Route path="/profile" component={Profile} />
+
+            
+
           </Switch>
-        </Router>        
+        </Router>
       </div>
     );
   }

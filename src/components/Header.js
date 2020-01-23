@@ -1,22 +1,64 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 import { Menu } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react'
 
-const Header = () => {
+const GameHeader = () => {
   return (
-    <div>
-      <h1>Should I Buy This Game?</h1>
-    <NavLink to="/">Home</NavLink>
+    <Header size='huge'>Should I Buy This Game?
+      <Menu>
+          
+        <Menu.Item
+          name='games'
+          as={NavLink}
+          to="/games"
+        >
+          Home
+        </Menu.Item>
 
-    <NavLink to="/about">About</NavLink>
+        <Menu.Item
+          name='about'
+          as={NavLink}
+          to="/about"
+        >
+          About
+        </Menu.Item>
 
-    <NavLink to="/suggest">Suggest A Game</NavLink>
+        <Menu.Item
+          name='suggest'
+          as={NavLink}
+          to="/suggest"
+        >
+          Suggest A Game
+        </Menu.Item>
 
-    </div>
+        <Menu.Item
+          name='signup'
+          as={NavLink}
+          to="/"
+        >
+          Sign Up
+        </Menu.Item>
 
+        <Menu.Item
+          name='login'
+          as={NavLink}
+          to="/login"
+        >
+          Login
+        </Menu.Item>
 
-
+        <Menu.Item
+          name='profile'
+          as={NavLink}
+          to="/profile"
+        >
+          My Profile
+        </Menu.Item>
+        
+      </Menu>
+    </Header>
   );
 }
 
-export default Header;
+export default GameHeader;
